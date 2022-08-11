@@ -30,6 +30,7 @@ const renderProfileData = () => {
 
 const renderProfileList = (profileList) => {
 
+    console.log('3. Modtager profileList data, opretter en template')
     let profileListContainer = document.querySelector('#profileList')
 
     let userTmpl = (profile) => `
@@ -38,7 +39,8 @@ const renderProfileList = (profileList) => {
             <img src="/assets/profileimages/${profile.avatar}" />
         </div>
     `
-    
+
+    console.log('4. Loop´er over vores objecter i profiledata og udsriver vores template for hver bruger/profile.')
     profileList.map((profile) => {
 
         profileListContainer.insertAdjacentHTML('beforeend', userTmpl(profile));
@@ -47,9 +49,13 @@ const renderProfileList = (profileList) => {
 }
 
 const getProfileList = () => {
-
+    console.log('1. Henter Data fra profilelist.json')
     return fetch('/data/profileList.json')
     .then((response) => response.json())
 }
 
-getProfileList().then((profileList) => renderProfileList(profileList))
+getProfileList().then((profileList) => {
+    console.log('2. Modtager Data og lalder funktionen "renderProfileList(profileList)" for at udskrive vores data/html')
+    
+    renderProfileList(profileList)
+})
