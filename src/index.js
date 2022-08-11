@@ -26,7 +26,7 @@ const renderProfileData = () => {
     }).catch( (e) => console.log('Error', e))
 
 }
-// renderProfileData();
+//renderProfileData();
 
 const renderProfileList = (profileList) => {
 
@@ -40,7 +40,7 @@ const renderProfileList = (profileList) => {
         </div>
     `
 
-    console.log('4. Loop´er over vores objecter i profiledata og udsriver vores template for hver bruger/profile.')
+    console.log('4. Loop´er over vores objekter i profiledata og udskriver vores template for hver bruger/profile.')
     profileList.map((profile) => {
 
         profileListContainer.insertAdjacentHTML('beforeend', userTmpl(profile));
@@ -52,10 +52,15 @@ const getProfileList = () => {
     console.log('1. Henter Data fra profilelist.json')
     return fetch('/data/profileList.json')
     .then((response) => response.json())
+    .catch((e) => {
+
+        console.log('Her fanger vi eventuelle fejl. Prøv, at ændre filnavnet. udekriver selve fejlbeskeden. ->', e)
+
+    })
 }
 
 getProfileList().then((profileList) => {
-    console.log('2. Modtager Data og lalder funktionen "renderProfileList(profileList)" for at udskrive vores data/html')
+    console.log('2. Modtager Data og kalder funktionen "renderProfileList(profileList)" for at udskrive vores data/html')
     
     renderProfileList(profileList)
 })
